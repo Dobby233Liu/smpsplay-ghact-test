@@ -28,6 +28,6 @@ jobs:
         name: "Build libs"
       - run: "cd ../SMPSPlay; msbuild SMPSPlay.sln /p:PlatformToolset=v142 /p:Configuration=Release /p:Platform=Win32"
         name: "MSBuild"
-      - run: "dir"
+      - run: "dir ../SMPSPlay"
         name: "todo: check output directory"
         
