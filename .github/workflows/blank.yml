@@ -21,7 +21,7 @@ jobs:
           ref: refs/heads/master
           submodules: true
         name: "Download SMPSPlay code"
-      - run: "cd libs && build_libs_VC2019-Win32.bat && build_libs_VC2019-Win64.bat && cd .."
+      - run: "cd libs && build_libs_VC2019-Win32.bat && cd .."
         name: "Build libs"
       - run: "msbuild SMPSPlay.sln /p:PlatformToolset=v142"
         name: "MSBuild"
