@@ -22,8 +22,9 @@ jobs:
           repository: ValleyBell/SMPSPlay
           ref: refs/heads/master
           submodules: true
+      - uses: actions/checkout@v1
         name: "Download SMPSPlay code"
-      - run: "cd ../SMPSPlay/libs; dir; copy ../../smpsplay-ghact-test/builder_fix.bat; ./builder_fix.bat; cd .."
+      - run: "cd ../SMPSPlay/libs; dir ../../smpsplay-ghact-test; copy ../../smpsplay-ghact-test/builder_fix.bat; ./builder_fix.bat; cd .."
         name: "Build libs"
       - run: "msbuild SMPSPlay.sln /p:PlatformToolset=v142"
         name: "MSBuild"
