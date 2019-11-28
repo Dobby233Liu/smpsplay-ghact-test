@@ -6,7 +6,8 @@ set BUILD_DIR=build_VC2019_Win32
 set BASE_DIR=%CD%\download
 set INST_DIR=%CD%\install
 set GENERATOR=Visual Studio 16 2019
-set ARCH=x86
+set ARCH=Win32
+set TOOLSET=v142
 
 pushd .
 
