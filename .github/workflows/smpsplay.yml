@@ -48,6 +48,8 @@ jobs:
         name: "Build libs"
       - run: "cd ../SMPSPlay; msbuild SMPSPlay.sln /p:PlatformToolset=v142 /p:Configuration=Release /p:Platform=x64"
         name: "MSBuild"
+      - run: "dir ../SMPSPlay/Release"
+        continue-on-error: true
       - uses: actions/upload-artifact@v1
         with:
             name: SMPSPlay-msvc-x64
