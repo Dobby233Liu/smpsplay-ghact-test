@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_win32_msvc:
-    name: Build on Windows MSVC (Win32)
+    name: Build on MSVC (Win32)
     runs-on: windows-latest
     steps:
       - uses: ilammy/msvc-dev-cmd@v1.0.0
@@ -30,7 +30,7 @@ jobs:
             name: SMPSPlay-msvc-x86
             path: ../SMPSPlay/Release/SMPSPlay.exe
   build_x64_msvc:
-    name: Build on Windows MSVC (x64)
+    name: Build on MSVC (x64)
     runs-on: windows-latest
     steps:
       - uses: ilammy/msvc-dev-cmd@v1.0.0
@@ -52,3 +52,36 @@ jobs:
         with:
             name: SMPSPlay-msvc-x64
             path: ..\SMPSPlay\x64\Release\SMPSPlay64.exe
+  # gcc
+  build_x86_gcc:
+    name: Build on GCC (x86)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          repository: ValleyBell/SMPSPlay
+          ref: refs/heads/master
+          submodules: true
+      - uses: actions/checkout@v1
+        name: "Download SMPSPlay code"
+      - run: "cd ../SMPSPlay/libs; copy ../../smpsplay-ghact-test/builder_gcc.bat; ./builder_gcc.bat; cd .."
+        name: "Build libs"
+      - run: "cd ../SMPSPlay; cmd /c \"set CFLAGS=\"-m32\" && set CXXFLAGS=\"-m32\" && make\""
+        name: "GMake"
+      - run: "cd ../SMPSPlay; dir"
+  build_x64_gcc:
+    name: Build on GCC (x64)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          repository: ValleyBell/SMPSPlay
+          ref: refs/heads/master
+          submodules: true
+      - uses: actions/checkout@v1
+        name: "Download SMPSPlay code"
+      - run: "cd ../SMPSPlay/libs; copy ../../smpsplay-ghact-test/builder_gcc_x64.bat; ./builder_gcc_x64.bat; cd .."
+        name: "Build libs"
+      - run: "cd ../SMPSPlay; cmd /c \"set CFLAGS=\"-m64\" && set CXXFLAGS=\"-m64\" && make\""
+        name: "GMake"
+      - run: "cd ../SMPSPlay; dir"
