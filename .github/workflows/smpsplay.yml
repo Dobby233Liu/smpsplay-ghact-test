@@ -6,17 +6,14 @@ on:
   push: 
 
 jobs:
-  build_x86_msvc:
-    name: Build on Windows MSVC (x86)
-
+  build_win32_msvc:
+    name: Build on Windows MSVC (Win32)
     runs-on: windows-latest
-
     steps:
       - uses: ilammy/msvc-dev-cmd@v1.0.0
         with:
           arch: "x86"
         name: "Setup PATH"
-
       - uses: actions/checkout@v1
         with:
           repository: ValleyBell/SMPSPlay
@@ -31,4 +28,27 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
             name: SMPSPlay-msvc-x86
+            path: ../SMPSPlay/Release/SMPSPlay.exe
+  build_x64_msvc:
+    name: Build on Windows MSVC (x64)
+    runs-on: windows-latest
+    steps:
+      - uses: ilammy/msvc-dev-cmd@v1.0.0
+        with:
+          arch: "x64"
+        name: "Setup PATH"
+      - uses: actions/checkout@v1
+        with:
+          repository: ValleyBell/SMPSPlay
+          ref: refs/heads/master
+          submodules: true
+      - uses: actions/checkout@v1
+        name: "Download SMPSPlay code"
+      - run: "cd ../SMPSPlay/libs; copy ../../smpsplay-ghact-test/builder_fix_x64.bat; ./builder_fix_x64.bat; cd .."
+        name: "Build libs"
+      - run: "cd ../SMPSPlay; msbuild SMPSPlay.sln /p:PlatformToolset=v142 /p:Configuration=Release /p:Platform=x64"
+        name: "MSBuild"
+      - uses: actions/upload-artifact@v1
+        with:
+            name: SMPSPlay-msvc-x64
             path: ../SMPSPlay/Release/SMPSPlay.exe
