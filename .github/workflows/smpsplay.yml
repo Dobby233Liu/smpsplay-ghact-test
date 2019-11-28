@@ -28,6 +28,7 @@ jobs:
         name: "Build libs"
       - run: "cd ../SMPSPlay; msbuild SMPSPlay.sln /p:PlatformToolset=v142 /p:Configuration=Release /p:Platform=Win32"
         name: "MSBuild"
-      - run: "dir ../SMPSPlay"
-        name: "todo: check output directory"
-        
+      - uses: actions/upload-artifact@v1
+        with:
+            name: SMPSPlay-msvc-x86
+            path: ../SMPSPlay/Release
