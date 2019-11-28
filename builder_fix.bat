@@ -2,11 +2,11 @@
 
 rem @if "%VCINSTALLDIR%" == "" goto patherr
 
-set BUILD_DIR=build_VC2019_Win64
+set BUILD_DIR=build_VC2019_Win32
 set BASE_DIR=%CD%\download
 set INST_DIR=%CD%\install
 set GENERATOR=Visual Studio 16 2019
-set ARCH=x64
+set ARCH=x86
 
 pushd .
 
