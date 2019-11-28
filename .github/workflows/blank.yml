@@ -6,12 +6,15 @@ on:
   push: 
 
 jobs:
-  build:
-    name: Build on Windows MSVC
+  build_x86_msvc:
+    name: Build on Windows MSVC (x86)
+
     runs-on: windows-latest
 
     steps:
       - uses: ilammy/msvc-dev-cmd@v1.0.0
+        with:
+          arch: "x86"
       - uses: actions/checkout@v1
         with:
           repository: ValleyBall/SMPSPlay
