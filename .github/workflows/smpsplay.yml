@@ -26,7 +26,7 @@ jobs:
         name: "Download SMPSPlay code"
       - run: "cd ../SMPSPlay/libs; copy ../../smpsplay-ghact-test/builder_fix.bat; ./builder_fix.bat; cd .."
         name: "Build libs"
-      - run: "cd ../SMPSPlay; msbuild SMPSPlay.sln /p:PlatformToolset=v142 /p:Configuration=Release /p:Platform:Win32"
+      - run: "cd ../SMPSPlay; msbuild SMPSPlay.sln /p:PlatformToolset=v142 /p:Configuration=Release /p:Platform=Win32"
         name: "MSBuild"
       - run: "dir"
         name: "todo: check output directory"
