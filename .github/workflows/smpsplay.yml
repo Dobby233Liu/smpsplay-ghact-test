@@ -2,7 +2,7 @@ name: CI
 
 on: 
   schedule:
-    - cron: "0 */12 * * 1"
+    - cron: "0 */12 * * 1" # kinda doesn't work
   push: 
 
 jobs:
@@ -109,7 +109,7 @@ jobs:
           submodules: true
         name: "Download SMPSPlay code"
       - uses: actions/checkout@v1
-      - run: "cd ../SMPSPlay && copy ../smpsplay-ghact-test/build_fix.diff . && git apply build_fix.diff"
+      - run: "cd ../SMPSPlay && cp ../smpsplay-ghact-test/build_fix.diff && git apply build_fix.diff"
         name: "libvgm reference fixes"
       - run: "cd ../SMPSPlay/libs && ./build_libs_GCC.sh"
         name: "Build libs"
