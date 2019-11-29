@@ -70,7 +70,10 @@ jobs:
         name: "Build libs"
       - run: "cd ../SMPSPlay; cmd /c 'set CFLAGS=\"-m32\" && set CXXFLAGS=\"-m32\" && make'"
         name: "GMake"
-      - run: "cd ../SMPSPlay; dir"
+      - uses: actions/upload-artifact@v1
+        with:
+            name: SMPSPlay-gcc-x86
+            path: ..\SMPSPlay\smpsplay.exe
   build_x64_gcc:
     name: Build on GCC (x64)
     runs-on: windows-latest
@@ -88,4 +91,7 @@ jobs:
         name: "Build libs"
       - run: "cd ../SMPSPlay; cmd /c 'set CFLAGS=\"-m64\" && set CXXFLAGS=\"-m64\" && make'"
         name: "GMake"
-      - run: "cd ../SMPSPlay; dir"
+      - uses: actions/upload-artifact@v1
+        with:
+            name: SMPSPlay-gcc-x64
+            path: ..\SMPSPlay\smpsplay.exe
