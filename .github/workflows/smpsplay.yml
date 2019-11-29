@@ -64,7 +64,7 @@ jobs:
           submodules: true
       - uses: actions/checkout@v1
         name: "Download SMPSPlay code"
-      - run: "cd ../SMPSPlay; git apply ../smpsplay-ghact-test/build_fix.diff"
+      - run: "cd ../SMPSPlay; copy ../smpsplay-ghact-test/build_fix.diff; git apply build_fix.diff"
         name: "library building fixes"
       - run: "cd ../SMPSPlay/libs; sh -c 'CFLAGS=\"-m32\" && ./build_libs_GCC.sh'"
         name: "Build libs"
@@ -82,7 +82,7 @@ jobs:
           submodules: true
       - uses: actions/checkout@v1
         name: "Download SMPSPlay code"
-      - run: "cd ../SMPSPlay; git apply ../smpsplay-ghact-test/build_fix.diff"
+      - run: "cd ../SMPSPlay; copy ../smpsplay-ghact-test/build_fix.diff; git apply build_fix.diff"
         name: "library building fixes"
       - run: "cd ../SMPSPlay/libs; sh -c 'CFLAGS=\"-m64\" && ./build_libs_GCC.sh'"
         name: "Build libs"
