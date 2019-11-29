@@ -113,5 +113,5 @@ jobs:
         name: "libvgm reference fixes"
       - run: "cd ../SMPSPlay/libs && chmod +x build_libs_GCC.sh && ./build_libs_GCC.sh"
         name: "Build libs"
-      - run: 'cd ../SMPSPlay && USE_ALSA=0 USE_LIBAO=0 USE_BSD_AUDIO=1 make'
+      - run: 'cd ../SMPSPlay && export USE_ALSA=0 && export USE_LIBAO=0 && export USE_BSD_AUDIO=1 && make'
         name: "GMake"
