@@ -111,7 +111,7 @@ jobs:
       - uses: actions/checkout@v1
       - run: "cd ../SMPSPlay && cp ../smpsplay-ghact-test/build_fix.diff . && git apply build_fix.diff"
         name: "libvgm reference fixes"
-      - run: "cd ../SMPSPlay/libs && ./build_libs_GCC.sh"
+      - run: "cd ../SMPSPlay/libs && chmod +x build_libs_GCC.sh && ./build_libs_GCC.sh"
         name: "Build libs"
       - run: "cd ../SMPSPlay && make"
         name: "GMake"
