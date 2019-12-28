@@ -17,5 +17,5 @@ jobs:
         name: "Build"
       - uses: actions/upload-artifact@v1
         with:
-            name: SMPSPlay-msvc-x64
+            name: S3U
             path: ..\s3unlocked\s3unlocked.bin
