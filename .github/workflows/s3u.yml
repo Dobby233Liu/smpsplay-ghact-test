@@ -1,0 +1,21 @@
+name: s3 unlocked
+
+on: 
+  push:
+
+jobs:
+  build:
+    name: build.bat
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          repository: fredbronze/s3unlocked
+          ref: refs/heads/master
+          submodules: true
+      - run: "cd ../s3unlocked; build"
+        name: "Build"
+      - uses: actions/upload-artifact@v1
+        with:
+            name: SMPSPlay-msvc-x64
+            path: ..\s3unlocked\s3unlocked.bin
