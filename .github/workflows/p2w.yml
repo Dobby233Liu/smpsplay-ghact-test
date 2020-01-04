@@ -1,0 +1,21 @@
+name: pcm2wav
+
+on: 
+  push:
+
+jobs:
+  build:
+    name: gcc-x64
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          repository: pliu6/pcm2wav # https://github.com/pliu6/pcm2wav
+          ref: refs/heads/master
+          submodules: true
+      - run: "cd ../pcm2wav; make"
+        name: "Build"
+      - uses: actions/upload-artifact@v1
+        with:
+            name: S3U
+            path: ..\pcm2wav\pcm2wav.exe
