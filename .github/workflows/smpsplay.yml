@@ -69,6 +69,8 @@ jobs:
         name: "libvgm reference fixes"
       - run: "choco install mingw --x86 --force -y"
         name: "install x86 toolchain"
+      - run: "del 'C:/ProgramData/chocolatey/bin/i686-w64-mingw32-gcc.exe'; del 'C:/ProgramData/chocolatey/bin/i686-w64-mingw32-g++.exe'"
+        name: "fuck up shims"
       - run: "copy -Force C:/ProgramData/chocolatey/bin/mingw32-make.exe C:/ProgramData/chocolatey/bin/make.exe; cd ../SMPSPlay/libs; sh -c 'CFLAGS=\"-m32\" CXXFLAGS=\"-m32\" CMAKE_C_COMPILER=\"i686-w64-mingw32-gcc\" CMAKE_CXX_COMPILER=\"i686-w64-mingw32-g++\" CC=\"i686-w64-mingw32-gcc\" CXX=\"i686-w64-mingw32-g++\" ./build_libs_GCC.sh'"
         name: "Build libs"
       - run: "cd ../SMPSPlay; sh -c 'CFLAGS=\"-m32\" CXXFLAGS=\"-m32\" CC=\"i686-w64-mingw32-gcc\" CXX=\"i686-w64-mingw32-g++\" mingw32-make'"
@@ -113,5 +115,5 @@ jobs:
         name: "libvgm reference fixes"
       - run: "cd ../SMPSPlay/libs && chmod +x build_libs_GCC.sh && ./build_libs_GCC.sh"
         name: "Build libs"
-      - run: 'cd ../SMPSPlay && export USE_ALSA=0 && export USE_LIBAO=0 && export USE_BSD_AUDIO=1 && make'
+      - run: 'cd ../SMPSPlay && USE_ALSA=0 USE_LIBAO=0 USE_BSD_AUDIO=0 && make'
         name: "GMake"
