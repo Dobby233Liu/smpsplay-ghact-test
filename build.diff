@@ -1,0 +1,71 @@
+diff --git a/Makefile b/Makefile
+index 7f665cd..b322c26 100644
+--- a/Makefile
++++ b/Makefile
+@@ -4,23 +4,9 @@
+ #
+ ########################
+ 
+-ifeq ($(OS),Windows_NT)
+-WINDOWS = 1
+-else
+-WINDOWS = 0
+-endif
+-
+-ifeq ($(WINDOWS), 0)
+-USE_BSD_AUDIO = 0
+-USE_ALSA = 1
+-USE_LIBAO = 1
+-endif
+-
+ INCPATH = libs/install/include
+ LIBPATH = libs/install/lib
+ 
+-CC = gcc
+-CPP = g++
+ PREFIX = /usr/local
+ MANPREFIX = $(PREFIX)/share/man
+ 
+@@ -53,32 +39,6 @@ endif
+ # --- Audio Output stuff ---
+ CFLAGS += -DAUDDRV_WAVEWRITE
+ 
+-ifeq ($(WINDOWS), 1)
+-CFLAGS += -D AUDDRV_WINMM
+-CFLAGS += -D AUDDRV_DSOUND
+-CFLAGS += -D AUDDRV_XAUD2
+-#CFLAGS += -D AUDDRV_WASAPI
+-endif
+-
+-ifneq ($(WINDOWS), 1)
+-ifneq ($(USE_BSD_AUDIO), 1)
+-CFLAGS += -D AUDDRV_OSS
+-else
+-CFLAGS += -D AUDDRV_SADA
+-endif
+-
+-ifeq ($(USE_ALSA), 1)
+-LDFLAGS += -lasound
+-CFLAGS += -D AUDDRV_ALSA
+-endif
+-endif
+-
+-ifeq ($(USE_LIBAO), 1)
+-LDFLAGS += -lao
+-CFLAGS += -D AUDDRV_LIBAO
+-endif
+-
+-
+ SRC = src
+ OBJ = obj
+ LIBAUDSRC = $(SRC)/audio
+@@ -90,7 +50,8 @@ OBJDIRS = \
+ 
+ LIBS = \
+ 	$(LIBPATH)/libvgm-audio.a \
+-	$(LIBPATH)/libvgm-emu.a
++	$(LIBPATH)/libvgm-emu.a \
++	$(LIBPATH)/libvgm-utils.a
+ 
+ ENGINEOBJS = \
+ 	$(OBJ)/Engine/dac.o \
