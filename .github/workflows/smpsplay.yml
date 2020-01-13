@@ -69,7 +69,7 @@ jobs:
         name: "libvgm reference fixes"
       - run: "choco install mingw --x86 --force -y"
         name: "install x86 toolchain"
-      - run: "del 'C:/ProgramData/chocolatey/bin/i686-w64-mingw32-gcc.exe'; del 'C:/ProgramData/chocolatey/bin/i686-w64-mingw32-g++.exe'"
+      - run: "refreshenv&&del 'C:/ProgramData/chocolatey/bin/i686-w64-mingw32-gcc.exe'; del 'C:/ProgramData/chocolatey/bin/i686-w64-mingw32-g++.exe'"
         name: "fuck up shims"
       - run: "copy -Force C:/ProgramData/chocolatey/bin/mingw32-make.exe C:/ProgramData/chocolatey/bin/make.exe; cd ../SMPSPlay/libs; sh -c 'CFLAGS=\"-m32\" CXXFLAGS=\"-m32\" CMAKE_C_COMPILER=\"i686-w64-mingw32-gcc\" CMAKE_CXX_COMPILER=\"i686-w64-mingw32-g++\" CC=\"i686-w64-mingw32-gcc\" CXX=\"i686-w64-mingw32-g++\" ./build_libs_GCC.sh'"
         name: "Build libs"
@@ -111,7 +111,7 @@ jobs:
           submodules: true
         name: "Download SMPSPlay code"
       - uses: actions/checkout@v1
-      - run: "cd ../SMPSPlay && cp ../smpsplay-ghact-test/build_fix.diff . && git apply build_fix.diff"
+      - run: "cd ../SMPSPlay && cp ../smpsplay-ghact-test/build.diff . && git apply build.diff"
         name: "libvgm reference fixes"
       - run: "cd ../SMPSPlay/libs && chmod +x build_libs_GCC.sh && ./build_libs_GCC.sh"
         name: "Build libs"
