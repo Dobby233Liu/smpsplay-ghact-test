@@ -67,13 +67,13 @@ jobs:
       - uses: actions/checkout@v1
       - run: "cd ../SMPSPlay; copy ../smpsplay-ghact-test/build_fix.diff; git apply build_fix.diff"
         name: "libvgm reference fixes"
-      - run: "choco install mingw --x86 --force -y"
-        name: "install x86 toolchain"
-      - run: "refreshenv; del 'C:/ProgramData/chocolatey/bin/i686-w64-mingw32-gcc.exe'; del 'C:/ProgramData/chocolatey/bin/i686-w64-mingw32-g++.exe'"
-        name: "fuck up shims"
-      - run: "copy -Force C:/ProgramData/chocolatey/bin/mingw32-make.exe C:/ProgramData/chocolatey/bin/make.exe; cd ../SMPSPlay/libs; sh -c 'CFLAGS=\"-m32\" CXXFLAGS=\"-m32\" CC=\"C:\\\\\\\\ProgramData\\\\\\\\chocolatey\\\\\\\\lib\\\\\\\\mingw\\\\\\\\tools\\\\\\\\install\\\\\\\\mingw32\\\\\\\\bin\\\\\\\\i686-w64-mingw32-gcc\" CXX=\"C:\\\\\\\\ProgramData\\\\\\\\chocolatey\\\\\\\\lib\\\\\\\\mingw\\\\\\\\tools\\\\\\\\install\\\\\\\\mingw32\\\\\\\\bin\\\\\\\\i686-w64-mingw32-g++\" ./build_libs_GCC.sh'"
+      - run: "choco install mingw --x86 --force -y --params '/exception:sjlj'"
+        name: "install x86 toolchain (/exception:sjlj)"
+      #- run: "refreshenv; del 'C:/ProgramData/chocolatey/bin/i686-w64-mingw32-gcc.exe'; del 'C:/ProgramData/chocolatey/bin/i686-w64-mingw32-g++.exe'"
+      #  name: "fuck up shims"
+      - run: "copy -Force C:/ProgramData/chocolatey/bin/mingw32-make.exe C:/ProgramData/chocolatey/bin/make.exe; cd ../SMPSPlay/libs; sh -c 'CFLAGS=\"-m32\" CXXFLAGS=\"-m32\" CC=\"i686-w64-mingw32-gcc\" CXX=\"i686-w64-mingw32-g++\" ./build_libs_GCC.sh'"
         name: "Build libs"
-      - run: "cd ../SMPSPlay; sh -c 'CFLAGS=\"-m32\" CXXFLAGS=\"-m32\" CC=\"/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw32/bin/i686-w64-mingw32-gcc\" CXX=\"/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw32/bin/i686-w64-mingw32-g++\" mingw32-make'"
+      - run: "cd ../SMPSPlay; sh -c 'CFLAGS=\"-m32\" CXXFLAGS=\"-m32\" CC=\"i686-w64-mingw32-gcc\" CXX=\"i686-w64-mingw32-g++\" mingw32-make'"
         name: "GMake"
       - uses: actions/upload-artifact@v1
         with:
