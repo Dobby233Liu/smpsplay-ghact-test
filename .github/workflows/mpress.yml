@@ -5,8 +5,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-        repository: 'Exidous/Unpackers'
-        path: '.\unp\'
+        with:
+          repository: 'Exidous/Unpackers'
+          path: '.\unp\'
       - name: Setup VS Dev Environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v1
       - run: 'cd ".\unp\Mpress unpacker"; msbuild'
