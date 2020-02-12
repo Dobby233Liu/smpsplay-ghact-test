@@ -1,0 +1,23 @@
+name: unp
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      repository: 'Exidous/Unpackers'
+      path: '.\unp\'
+    - name: Setup VS Dev Environment
+    - uses: seanmiddleditch/gha-setup-vsdevenv@v1
+    - run: 'cd ".\unp\Mpress unpacker"; msbuild'
+    - name: Upload artifact
+    - uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: he an niu
+        # Directory containing files to upload
+        path: '.\unp\Mpress unpacker\bin\'
