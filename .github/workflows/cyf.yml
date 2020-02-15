@@ -17,5 +17,4 @@ jobs:
           # List of components required in the selected VS installation (semi-colon separated)
           components: Microsoft.VisualStudio.Component.VC.Tools.x86.x64;Component.UnityEngine.x64
       - uses: actions/setup-python@v1.1.1
-      - run: "pip install win-unicode-console"
-      - run: "cd $Env:GITHUB_WORKSPACE/cyf; python -m run build.py"
+      - run: "chcp 65001; cd $Env:GITHUB_WORKSPACE/cyf; python build.py"
