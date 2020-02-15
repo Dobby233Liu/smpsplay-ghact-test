@@ -11,10 +11,10 @@ jobs:
         with:
           ref: refs/heads/feature # latest branch
           repository: "RhenaudTheLukark/CreateYourFrisk"
-          path: "cyf" # $GITHUB_WORKSPACE/cyf
+          path: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/cyf" # $GITHUB_WORKSPACE/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/cyf. dirty fix to a bug
       - uses: seanmiddleditch/gha-setup-vsdevenv@v1
         with:
           # List of components required in the selected VS installation (semi-colon separated)
           components: Microsoft.VisualStudio.Component.VC.Tools.x86.x64;Component.UnityEngine.x64
       - uses: actions/setup-python@v1.1.1
-      - run: "chcp 65001; cd $Env:GITHUB_WORKSPACE/cyf; python build.py"
+      - run: "chcp 65001; cd $Env:GITHUB_WORKSPACE/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/cyf; python build.py"
