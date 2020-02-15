@@ -1,0 +1,21 @@
+on: 
+  schedule:
+    - cron: "0/20 0,4,6,12,18,20,22 * * *" # kinda doesn't work
+  push: 
+
+jobs:
+  build_all:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: feature
+        path: "cyf" # $GITHUB_WORKSPACE/cyf
+    - name: Setup VS Dev Environment
+    - uses: seanmiddleditch/gha-setup-vsdevenv@v1
+      with:
+        # List of components required in the selected VS installation (semi-colon separated)
+        components: Microsoft.VisualStudio.Component.VC.Tools.x86.x64;Component.UnityEngine.x64
+    - run: "cd ../cyf; python3 build.py"
