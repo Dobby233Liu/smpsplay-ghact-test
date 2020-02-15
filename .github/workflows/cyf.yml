@@ -17,4 +17,4 @@ jobs:
           # List of components required in the selected VS installation (semi-colon separated)
           components: Microsoft.VisualStudio.Component.VC.Tools.x86.x64;Component.UnityEngine.x64
       - uses: actions/setup-python@v1.1.1
-      - run: "cd $Env:GITHUB_WORKSPACE/cyf; python3 build.py"
+      - run: "cd $Env:GITHUB_WORKSPACE/cyf; python build.py"
