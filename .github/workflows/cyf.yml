@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: feature
+          ref: refs/heads/feature # latest branch
           path: "cyf" # $GITHUB_WORKSPACE/cyf
       - uses: seanmiddleditch/gha-setup-vsdevenv@v1
         with:
