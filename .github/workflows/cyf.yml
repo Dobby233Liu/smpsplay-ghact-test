@@ -17,4 +17,4 @@ jobs:
           # List of components required in the selected VS installation (semi-colon separated)
           components: Microsoft.VisualStudio.Component.VC.Tools.x86.x64;Component.UnityEngine.x64
       - uses: actions/setup-python@v1.1.1
-      - run: "chcp 65001; cd $Env:GITHUB_WORKSPACE/cyf; $path = 'build.py'; '# -*- coding: utf-8 -*-\n' + (Get-Content $path -Raw) | Set-Content $path; python build.py"
+      - run: "chcp 65001; cd $Env:GITHUB_WORKSPACE/cyf; $path = (Get-Content 'build.py'); $path[90]='        print(folder)'; $content | Set-Content 'build.py'; python build.py"
