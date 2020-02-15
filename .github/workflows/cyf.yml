@@ -22,6 +22,6 @@ jobs:
       - uses: actions/upload-artifact@v1.0.0
         with:
           # Artifact name
-          name: bin(s)
+          name: w64 (name hardcoded)
           # Directory containing files to upload
-          path: cyf/bin
+          path: "cyf/bin/CYF v0.6.4 - Windows (64-bit).zip"
